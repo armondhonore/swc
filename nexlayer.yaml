@@ -1,0 +1,9 @@
+application:
+  name: calm-vale-swc
+  pods:
+    - name: swc-build-worker
+      image: "# filled by pipeline"
+      servicePorts:
+        - 8080
+      vars:
+        NODE_OPTIONS: "--max-old-space-size=8192"
