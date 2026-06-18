@@ -15,27 +15,28 @@
 
 ## Project Summary
 <!-- nexlayer:section agent-managed=project_summary -->
-SWC (Speedy Web Compiler) is a high-performance TypeScript/JavaScript compiler and toolset written in Rust, designed to replace Babel for faster compilation and minification.
+SWC (Speedy Web Compiler) is a high-performance TypeScript and JavaScript compiler written in Rust, providing a fast alternative to Babel for transpilation and minification.
 <!-- nexlayer:end -->
 
 ## Technology Stack
 <!-- nexlayer:section agent-managed=tech_stack -->
 | Name | Kind | Version | Detected From |
 |------|------|---------|---------------|
-| Rust | language | 1.73 | README.md |
-| Node.js | language | 20 | .node-version |
+| Rust | language | 1.73 | Cargo.toml, Dockerfile |
+| Node.js | language | 20 | .node-version, Dockerfile |
 | pnpm | tool | 10.33.3 | package.json |
-| napi-rs | build | 3.2.0 | packages/core/package.json |
+| NAPI-RS | build | 3.2.0 | packages/core/package.json |
+| LLVM | tool | latest | Dockerfile |
 <!-- nexlayer:end -->
 
 ## Repository Structure
 <!-- nexlayer:section agent-managed=structure_map -->
-- crates/ — Rust core logic and compiler crates
-- packages/core — Primary Node.js bindings for the core compiler
-- packages/html — HTML minification package
-- packages/minifier — JS/TS minification package
-- bindings/ — NAPI-RS and WASM bridge definitions
-- xtask — Rust automation tasks
+- crates/ — Core Rust logic and compiler passes
+- bindings/ — Node.js and WASM native bindings
+- packages/core — Main JS API for the compiler
+- packages/html — HTML minification logic
+- packages/minifier — JS/TS minification logic
+- packages/react-compiler — React-specific optimization tools
 <!-- nexlayer:end -->
 
 ## External Services Required
@@ -73,13 +74,13 @@ application:
   name: calm-vale-swc
   pods:
     - name: swc-build-worker
-      image: "# filled by pipeline"
+      image: "registry.nexlayer.io/user_01kece1xyh817dwff7wnarhkxd/swc:19edc2d3c3f"
+      path: /
       servicePorts:
         - 8080
       vars:
         NODE_OPTIONS: "--max-old-space-size=8192"
 ```
-
 <!-- nexlayer:end -->
 
 ## Nexlayer Deployment Plan
@@ -104,17 +105,18 @@ application:
 
 ## Nexlayer Configuration
 <!-- nexlayer:section agent-managed=nexlayer_config -->
-**Last deployed:** 2026-06-16T23:17:10Z  
-**Live URL:** https://calm-vale-swc.nexlayer.ai  
-**Runtime:** node · **Port:** 8080  
-**Deploy branch:** main  
+**Last deployed:** 2026-06-18T19:30:58Z  
+**Live URL:** https://relaxed-weasel-calm-vale-swc.cloud.nexlayer.ai  
+**Runtime:**  · **Port:** auto-detected  
+**Deploy branch:** nexlayer  
 
 ```yaml
 application:
   name: calm-vale-swc
   pods:
     - name: swc-build-worker
-      image: "# filled by pipeline"
+      image: "registry.nexlayer.io/user_01kece1xyh817dwff7wnarhkxd/swc:19edc2d3c3f"
+      path: /
       servicePorts:
         - 8080
       vars:
@@ -126,6 +128,7 @@ application:
 <!-- nexlayer:section agent-managed=build_history -->
 | Date | Status | Notes |
 |------|--------|-------|
-| 2026-06-16T21:07:11Z | analyzed | initial repo analysis |
-| 2026-06-16T23:17:10Z | success | deployed https://calm-vale-swc.nexlayer.ai |
+| 2026-06-18T19:20:38Z | analyzed | initial repo analysis |
+| 2026-06-18T19:30:58Z | success | deployed https://relaxed-weasel-calm-vale-swc.cloud.nexlayer.ai |
 <!-- nexlayer:end -->
+
