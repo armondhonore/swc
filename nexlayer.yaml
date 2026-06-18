@@ -3,6 +3,7 @@ application:
   pods:
     - name: swc-build-worker
       image: "# filled by pipeline"
+      path: /
       servicePorts:
         - 8080
       vars:
