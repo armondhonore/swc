@@ -1,0 +1,10 @@
+application:
+  name: calm-vale-swc
+  pods:
+    - name: swc-build-worker
+      image: "registry.nexlayer.io/user_01kece1xyh817dwff7wnarhkxd/swc:19edc2d3c3f"
+      path: /
+      servicePorts:
+        - 8080
+      vars:
+        NODE_OPTIONS: "--max-old-space-size=8192"
